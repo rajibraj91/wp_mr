@@ -1,123 +1,91 @@
+
+
 <?php
-/**
- * The template for displaying comments
- *
- * This is the template that displays the area of the page that contains both the current comments
- * and the comment form.
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
- * @package WordPress
- * @subpackage Twenty_Twenty_One
- * @since Twenty Twenty-One 1.0
- */
-
-/*
- * If the current post is protected by a password and
- * the visitor has not yet entered the password,
- * return early without loading the comments.
- */
-if ( post_password_required() ) {
-	return;
-}
-
-$mr_comment_count = get_comments_number();
+    if ( post_password_required() ) {
+        return;
+    }
 ?>
-
-<div id="comments" class="comments-area default-max-width <?php echo get_option( 'show_avatars' ) ? 'show-avatars' : ''; ?>">
-
-	<?php
-	if ( have_comments() ) :
-		?>
-        <div class="blog-reviews">
-            <h3 class="comments-title">
-                <?php if ( '1' === $mr_comment_count ) : ?>
-                    <?php esc_html_e( '1 comment', 'mr' ); ?>
-                <?php else : ?>
-                    <?php
-                    printf(
-                        /* translators: %s: Comment count number. */
-                        esc_html( _nx( '%s comment', '%s comments', $mr_comment_count, 'Comments title', 'mr' ) ),
-                        esc_html( number_format_i18n( $mr_comment_count ) )
-                    );
-                    ?>
-                <?php endif; ?>
-            </h3>
-            <ul class="comment-list">
-                <?php
-                wp_list_comments(
-                    array(
-                        'avatar_size' => 60,
-                        'style'       => 'ul',
-                        // 'short_ping'  => true,
-                    )
+<?php 
+    if (get_comments_number() > 1) {
+?>
+<div id="comments" class="comments">
+<?php } ?>
+<?php
+    // You can start editing here -- including this comment!
+    if ( have_comments() ) : ?>
+        <h3>
+            <?php
+            $comments_number = get_comments_number();
+            if ( '1' === $comments_number ) {
+                printf( _x( '1 Comment', 'comments title', 'mr' ), get_the_title() );
+            } else {
+                printf(
+                    _nx(
+                        '%1$s Comment',
+                        '%1$s Comments',
+                        $comments_number,
+                        'comments title',
+                        'mr'
+                    ),
+                    number_format_i18n( $comments_number ),
+                    get_the_title()
                 );
-                ?>
-            </ul>
-        </div>
+            }
+            ?>
+        </h3>
 
-		
+        <ul class="lab-ul comment-list">
+            <?php
+                wp_list_comments( array(
+                    'style'       => 'ul',
+                    'short_ping'  => true,
+                    'callback'   => 'mr_comment_template'
+                ) );
+            ?>
+        </ul>
 
-		<?php if ( ! comments_open() ) : ?>
-			<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'mr' ); ?></p>
-		<?php endif; ?>
-	<?php endif; ?>
+        <?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // Are there comments to navigate through? ?>
+        <nav id="comment-nav-below" class="navigation comment-navigation" role="navigation">
+            <h2 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'mr' ); ?></h2>
+            <div class="nav-links">
+                <div class="nav-previous"><?php previous_comments_link( esc_html__( 'Older Comments', 'mr' ) ); ?></div>
+                <div class="nav-next"><?php next_comments_link( esc_html__( 'Newer Comments', 'mr' ) ); ?></div>
+            </div>
+        </nav>
+    <?php
+        endif; 
+    endif;
 
-	<?php
-        // comment_form(
-        //     array(
-        //         'title_reply'        => esc_html__( 'Leave a comment', 'mr' ),
-        //         'title_reply_before' => '<h2 id="reply-title" class="comment-reply-title">',
-        //         'title_reply_after'  => '</h2>',
-        //     )
-        // );
+    // If comments are closed and there are comments, let's leave a little note, shall we?
+    if ( ! comments_open() && get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
 
+        <p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'mr' ); ?></p>
+    <?php
+    endif;
 
-
-
-        // $commenter = wp_get_current_commenter();
-        // $req = get_option( 'require_name_email' );
-        // $aria_req = ( $req ? " aria-required='true'" : '' );
-        // $fields =  array(
-        //     'title_reply'        => esc_html__( 'Leave a comment', 'mr' ),
-
-        //     'author' => '<p class="comment-form-author">' . '<label for="author">' . __( 'Name' ) . '</label> ' . ( $req ? '<span class="required">*</span>' : '' ) .
-        //         '<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30"' . $aria_req . ' /></p>',
-        //     'email'  => '<p class="comment-form-email"><label for="email">' . __( 'Email' ) . '</label> ' . ( $req ? '<span class="required">*</span>' : '' ) .
-        //         '<input id="email" name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" size="30"' . $aria_req . ' /></p>',
-        //     'website'  => '<p class="comment-form-url"><label for="website">' . __( 'Website' ) . '</label> ' . ( $req ? '<span class="required">*</span>' : '' ) .
-        //         '<input id="website" name="website" type="text" value="' . esc_attr(  $commenter['comment_author_url'] ) . '" size="30"' . $aria_req . ' /></p>',
-        // );
-        // $comments_args = array(
-        //     'fields' =>  $fields,
-        //     'label_submit' => 'Send My Comment'
-        // );
-        // comment_form($comments_args);
-
-
-
-
+   
+    ?>
+<?php if (get_comments_number() > 1) 
+    {
+?>
+    <?php
         $commenter = wp_get_current_commenter();
         $req = get_option( 'require_name_email' );
         $aria_req = ( $req ? " aria-required='true'" : '' );
         $fields =  array(
-            'author' => '<p class="comment-form-author">' . '<label for="author">' . __( 'Name' ) . '</label> ' . ( $req ? '<span class="required">*</span>' : '' ) .
-                '<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30"' . $aria_req . ' /></p>',
-            'email'  => '<p class="comment-form-email"><label for="email">' . __( 'Email' ) . '</label> ' . ( $req ? '<span class="required">*</span>' : '' ) .
-                '<input id="email" name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" size="30"' . $aria_req . ' /></p>',
+            'author' => '<p class="comment-form-author">' . ( $req ? '<span class="required"></span>' : '' ) .
+                '<input id="author" name="author" type="text" placeholder="Name*" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30"' . $aria_req . ' /></p>',
+            'email'  => '<p class="comment-form-email">' . ( $req ? '<span class="required"></span>' : '' ) .
+                '<input id="email" name="email" type="text" placeholder="Email*" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" size="30"' . $aria_req . ' /></p>',
         );
         $comments_args = array(
             'fields' =>  $fields,
-            'title_reply'=>'Please give us your valuable comment',
+            'label_submit' => 'Send My Comment',
         );
         comment_form($comments_args);
-
-        // function wpb_move_comment_field_to_bottom( $fields ) {
-        //     $comment_field = $fields['comment'];
-        //     unset( $fields['comment'] );
-        //     $fields['comment'] = $comment_field;
-        //     return $fields;
-        // }
 	?>
+</div>
+<?php 
+    }
+?>
 
-</div><!-- #comments -->

@@ -1,8 +1,13 @@
 <?php
 
+
+
+require get_template_directory() . '/inc/codestar-code.php';
+
 add_theme_support( 'title-tag' );
 add_theme_support( 'custom-logo');
 add_theme_support( 'post-thumbnails');
+
 
 
 function eventoz_scripts() {
@@ -43,6 +48,23 @@ function mr_support() {
     remove_theme_support( 'widgets-block-editor' );
 }
 add_action( 'after_setup_theme', 'mr_support' );
+
+
+// custom post register
+// function mr_custom_post (){
+//     register_post_type( 'sliders', array(
+//         'labels' => array(
+//             'name' => __('Sliders', 'boon'),
+//             'singular_name' => __('slider', 'boon'),
+//         ),
+//         'public' => true,
+//         'supports' => array('title', 'editor', 'thumbnail'),
+//     ));
+// }
+// add_action('init', 'mr_custom_post');
+
+
+
 
 
 // register_widget register
@@ -226,20 +248,12 @@ class Add_Banner extends WP_Widget {
 // search
 function Search_Widget( $form ) {
     ob_start(); ?>
-        <form role="search" method="get" class="search-form" action="<?php echo home_url( '/' ); ?>">
-            <label>
-                <span class="screen-reader-text">Search For</span>
+        <div class="widget-search">
+            <form role="search" method="get" class="search-form" action="<?php echo home_url( '/' ); ?>">
                 <input type="search" class="search-field" placeholder="Search..." value="<?php echo esc_attr( get_search_query() ); ?>" name="s" title="Search for:" />
-            </label>
-            <?php
-                $swp_cat_dropdown_args = array(
-                    'show_option_all'  => __( 'Any Category' ),
-                    'name'             => 'swp_category_limiter',
-                );
-                wp_dropdown_categories( $swp_cat_dropdown_args );
-            ?>
-            <input type="submit" class="search-submit" value="Search" />
-        </form>
+                <button type="submit" class="search-submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
     <?php return ob_get_clean();
 }
  
@@ -251,3 +265,99 @@ function register_widgets(){
 	register_widget('Add_Banner');
 }
 add_action('widgets_init','register_widgets');
+
+
+
+//==================================comment form start here==============
+function mr_comment_template( $comment, $args, $depth ) {
+    $GLOBALS['comment'] = $comment;
+    switch ( $comment->comment_type ) :
+        case 'pingback' :
+        case 'trackback' :
+            ?>
+            <li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
+            <p><?php esc_html( 'Pingback:', 'mr' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( esc_html( '(Edit)', 'mr' ), '<span class="edit-link">', '</span>' ); ?></p>
+            <?php
+                break;
+                default :
+                global $post;
+            ?>
+            <li class="comment" id="li-comment-1">
+                <div class="reviews-list">
+                    <div class="reviews-thumb">
+                        <?php echo get_avatar( $comment, 90); ?>
+                    </div>
+                    <div class="reviews-content">
+                        <div class="reviews-title">
+                            <h4><a href="<?php echo esc_url( get_comment_author_link() ); ?>" rel="external nofollow"><?php echo get_comment_author(); ?></a></h4>
+                            <h6> <?php echo sprintf( esc_html__( '%1$s at %2$s', 'mr' ), get_comment_date(), get_comment_time() ) ?> </h6>
+                            <a class="reply">
+                                <?php
+                                    comment_reply_link(
+                                        array_merge( $args,
+                                            array(
+                                                'reply_text' => esc_html__( 'Reply', 'mr' ),
+                                                'depth'      => $depth,
+                                                'max_depth'  => $args['max_depth'],
+                                                
+                                            )
+                                        )
+                                    ); 
+                                ?>
+                            </a>
+                        </div>
+                        <?php if ( '0' == $comment->comment_approved ) : ?>
+                            <p class="comment-awaiting-moderation"><?php esc_html__( 'Your comment is awaiting moderation.', 'mr' ); ?></p>
+                        <?php endif; ?>
+                        <p>
+                            <?php 
+                                comment_text();
+                                edit_comment_link( esc_html__( 'Edit', 'mr' ), '<p class="edit-link">', '</p>' );
+                            ?> 
+                        </p>
+                    </div>
+                </div>
+             </li>
+                                          
+            <?php
+            break;
+    endswitch;
+}
+
+function mr_comment_form() {
+    $commenter = wp_get_current_commenter();
+    $req = get_option( 'comment_author_email' );
+    $aria_req = ( $req ? " aria-required='true'" : '' );
+    $fields = array(
+		'author' => '<input id="name" name="name" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" placeholder="Name*" placeholder="' . esc_attr__( 'Name', 'mr' ) . '"' . $aria_req . '>',
+        'email'  => '<input name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" placeholder="' . esc_attr__( 'Email', 'mr' ) . '"' . $aria_req . '">',
+        'url'  => '<input name="url" type="text" class="w-100" value="' . esc_attr(  $commenter['comment_author_url'] ) . '" placeholder="' . esc_attr__( 'Website', 'mr' ) . '"' . $aria_req . '">',
+		 'cookies' => ' ',
+		
+                                           
+    );
+    $comments_args = array(
+        'fields' => $fields,
+        'title_reply'=> esc_html__( 'Leave a Comment', 'mr' ),
+        'title_reply_before'    => '<h4 class="h7">',
+        'title_reply_after'     => '</h4>',
+        'label_submit'  => esc_html__( 'Submit Comment', 'mr' ),
+		'class_submit' => 'default-button',
+        'comment_notes_before'  => ' ',
+        'comment_field' => '<textarea id="comment-reply" name="comment" rows="7" placeholder="' . esc_attr__( 'Type Your Comment Here*', 'mr' ) . '"></textarea>',
+        'comment_notes_after' => '',
+    );
+    comment_form( $comments_args );
+}
+function mr_textarea( $fields ) {
+    $comment_field = $fields['comment'];
+    unset( $fields['comment'] );
+    $fields['comment'] = $comment_field;
+    return $fields;
+}
+add_filter( 'comment_form_fields', 'mr_textarea' );
+
+//==================================comment form end here==============
+
+
+

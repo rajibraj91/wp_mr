@@ -56,29 +56,6 @@
 					<div class="col-sm-12 col-md-4">
 						<div class="widget-section">
 							<?php dynamic_sidebar('right_sidebar');?>
-
-							<div class="blog-widget">
-								<h4>advertisement</h4>
-								<div class="blog-banner">
-									<a href="#"><img src="assets/images/blog/banner.png" alt="advertisement"></a>
-								</div>
-							</div>
-							<div class="blog-widget blog-widget-tags">
-								<h4>tags</h4>
-								<ul>
-									<li><a href="#">business</a></li>
-									<li><a href="#">art</a></li>
-									<li><a href="#">ux</a></li>
-									<li><a href="#">design</a></li>
-									<li><a href="#">fashion</a></li>
-									<li><a href="#">event</a></li>
-									<li><a href="#">sport</a></li>
-									<li><a href="#">meeting</a></li>
-									<li><a href="#">ui</a></li>
-									<li><a href="#">seminer</a></li>
-									<li><a href="#">speakers</a></li>
-								</ul>
-							</div>
 						</div>
 					</div>
 				</div>

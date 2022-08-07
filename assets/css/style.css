@@ -1720,6 +1720,17 @@ footer.footer-section {
 
 /* development css adding here */
 
+
+.widget-search .search-submit {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    padding-right: 20px;
+    border: none;
+    margin: 0;
+}
+
 .customize-support .header.header-wrapper.menu-fixed.animated.fadeInDown {
     top: 32px;
 }
@@ -1782,4 +1793,101 @@ footer.footer-section {
 .blog-widget-post ul li .blog-text {
     width: calc(100% - 100px);
     padding-left: 20px;
+}
+
+
+/* Comment Section */
+
+.comment-author.vcard {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    overflow: hidden;
+    text-align: center;
+}
+.fn {
+    display: none;
+}
+.says {
+    display: none;
+}
+
+
+/* Comment form start here */
+.comment-reply-title {
+    margin-bottom: 30px;
+}
+
+.comment-respond .comment-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.comment-respond .comment-form p, .comment-respond .comment-form p input {
+    width: 100%;
+    margin-bottom: 25px;
+}
+.comment-respond .comment-form p input {
+    padding: 15px 20px;
+    border: 1px solid #ededed;
+    margin-bottom: 0;
+}
+.comment-respond .comment-form .comment-notes {
+    display: none;
+}
+.comment-respond .comment-form .comment-form-comment {
+    width: 100%;
+}
+.comment-respond .comment-form .comment-form-comment label {
+    display: none;
+}
+.comment-respond .comment-form .comment-form-comment textarea {
+    padding: 15px 30px;
+    width: 100%;
+    border: 1px solid #ededed;
+}
+.comment-respond .comment-form .comment-form-author {
+    width: calc(100% / 2 - 15px);
+}
+.comment-respond .comment-form .comment-form-email {
+    width: calc(100% / 2 - 15px);
+}
+.comment-respond .comment-form .comment-form-url {
+    width: calc(100%);
+}
+.comment-respond .comment-form .comment-form-cookies-consent {
+    display: none;
+}
+.comment-respond .comment-form .comment-form-cookies-consent input {
+    width: auto;
+}
+.comment-respond .comment-form .form-submit  {}
+.comment-respond .comment-form .form-submit input {
+    padding: 15px 30px;
+    text-align: center;
+    color: #fff;
+    border-color: #cf1f1f;
+    background-color: #cf1f1f;
+    border-radius: 0;
+}
+
+
+/* tags css */
+
+.blog-widget-post .custom-html-widget ul {}
+.blog-widget-post .custom-html-widget ul li {
+    display: inline-block;
+    margin: 0;
+}
+.blog-widget-post .custom-html-widget ul li a {
+    background-color: #131617;
+    padding: 4px 16px;
+    color: #fff;
+    font-size: 14px;
+    display: inline-block;
+    margin: 2px;
+    text-transform: capitalize;
+}
+.widget-section .blog-widget:first-child {
+    margin-top: 0;
 }

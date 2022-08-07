@@ -1,15 +1,19 @@
 
+<?php
+	$option = get_option('my_framework');
+?>
 	<!-- ==========================  Footer Section Start ================== -->
 	<footer class="footer-section">
 		<div class="container">
 			<div class="row">
-				<p>&copy; 2017.All rights<a href="#">CodexCoder</a></p>
+				<p><?php echo $option['copyright']?></p>
 				<div class="social social3">
 					<ul>
-						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-						<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-						<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-						<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+						<li><a href="<?php echo $option['facebook_link']?>"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="<?php echo $option['twitter_link'] ?>"><i class="fa fa-twitter"></i></a></li>
+						<li><a href="<?php echo $option['linkedin_link'] ?>"><i class="fa fa-linkedin"></i></a></li>
+						<li><a href="<?php echo $option['instagram_link'] ?>"><i class="fa fa-instagram"></i></a></li>
+						<li><a href="<?php echo $option['pinterest_link'] ?>"><i class="fa fa-pinterest"></i></a></li>
 					</ul>
 				</div>
 				<div id="back-to-top" class="scroll-top back-to-top">
