@@ -15,7 +15,7 @@ function eventoz_scripts() {
 	wp_enqueue_style( 'style', get_stylesheet_uri(), array());
     wp_enqueue_style('bootstrap_css', get_template_directory_uri().'/assets/css/bootstrap.min.css', array());
     wp_enqueue_style('swiper_css', get_template_directory_uri().'/assets/css/swiper.min.css', array());
-    wp_enqueue_style('fontawesome_css', get_template_directory_uri().'/assets/css/font-awesome.min.css', array());
+    wp_enqueue_style('fontawesome_css', get_template_directory_uri().'/assets/css/all.min.css', array());
     wp_enqueue_style('main_css', get_template_directory_uri().'/assets/css/style.css', array());
     wp_enqueue_style('responsive_css', get_template_directory_uri().'/assets/css/responsive.css', array());
 
@@ -28,6 +28,7 @@ function eventoz_scripts() {
     wp_enqueue_script('isotope_js', get_template_directory_uri() . '/assets/js/isotope.pkgd.min.js', array('jquery'), false, true);
     wp_enqueue_script('masonry_js', get_template_directory_uri() . '/assets/js/masonry.pkgd.min.js', array('jquery'), false, true);
     wp_enqueue_script('easingmin_js', get_template_directory_uri() . '/assets/js/easing-min.js', array('jquery'), false, true);
+    wp_enqueue_script('easingmin_js', get_template_directory_uri() . '/assets/js/all.min.js', array('jquery'), false, true);
     wp_enqueue_script('main_js', get_template_directory_uri() . '/assets/js/custom.js', array('jquery'), false, true);
 
 	
@@ -51,17 +52,27 @@ add_action( 'after_setup_theme', 'mr_support' );
 
 
 // custom post register
-// function mr_custom_post (){
-//     register_post_type( 'sliders', array(
-//         'labels' => array(
-//             'name' => __('Sliders', 'boon'),
-//             'singular_name' => __('slider', 'boon'),
-//         ),
-//         'public' => true,
-//         'supports' => array('title', 'editor', 'thumbnail'),
-//     ));
-// }
-// add_action('init', 'mr_custom_post');
+function mr_custom_post (){
+    register_post_type( 'services', array(
+        'labels' => array(
+            'name' => __('Services', 'mr'),
+            'singular_name' => __('service', 'mr'),
+        ),
+        'public' => true,
+        'supports' => array('title', 'editor', 'thumbnail'),
+    ));
+
+    // Testimonial section
+    register_post_type( 'testimonials', array(
+        'labels' => array(
+            'name' => __('Testimonials', 'mr'),
+            'singular_name' => __('testimonial', 'mr'),
+        ),
+        'public' => true,
+        'supports' => array('title', 'editor', 'thumbnail', 'custom-fields'),
+    ));
+}
+add_action('init', 'mr_custom_post');
 
 
 

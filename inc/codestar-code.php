@@ -45,34 +45,22 @@ CSF::createSection( $prefix, array(
 					'title' => 'Banner title',
 					'default' => 'Rajib Raj',
 				),
+			),
+		),
+		array(
+			'id'      => 'social_lists',
+			'type'    => 'group',
+			'title'   =>'Banner Social Midea Lists',
+			'fields'  => array(
 				array(
-					'id'    => 'facebook_link',
-					'type'  => 'text',
-					'title' => 'Facebook Link',
-					'default' => '#',
+					'id'    => 'icon_name',
+					'type'  => 'icon',
+					'title' => 'Select Icon',
 				),
 				array(
-					'id'    => 'twitter_link',
+					'id'    => 'site_link',
 					'type'  => 'text',
-					'title' => 'Twitter Link',
-					'default' => '#',
-				),
-				array(
-					'id'    => 'linkedin_link',
-					'type'  => 'text',
-					'title' => 'Linkedin Link',
-					'default' => '#',
-				),
-				array(
-					'id'    => 'instagram_link',
-					'type'  => 'text',
-					'title' => 'Instagram Link',
-					'default' => '#',
-				),
-				array(
-					'id'    => 'pinterest_link',
-					'type'  => 'text',
-					'title' => 'Pinterest Link',
+					'title' => 'Visited Your Site Link Here',
 					'default' => '#',
 				),
 			),
@@ -154,12 +142,127 @@ CSF::createSection( $prefix, array(
 	),
 ));
 
+// Counter section
+CSF::createSection( $prefix, array(
+	'title'  => 'Counter Section',
+	'fields' => array(
+		array(
+			'id'    => 'counter_lists',
+			'type'  => 'group',
+			'title' => 'Counter Lists Area',
+			'fields'  => array(
+				array(
+					'id'    => 'counter_icon',
+					'type'  => 'icon',
+					'title' => 'Counter Icon',
+				),
+				array(
+					'id'    => 'counter_count',
+					'type'  => 'text',
+					'title' => 'Counter Count Number',
+					'default' => '100',
+				),
+				array(
+					'id'    => 'counter_text',
+					'type'  => 'text',
+					'title' => 'Counter Count Text',
+					'default' => 'Text Here',
+				),
+			),
+		),
+	),
+));
 
 
 
+// Work Process
+CSF::createSection( $prefix, array(
+	'title'  => 'Working Process',
+	'fields' => array(
+		array(
+			'id'    => 'working_lists',
+			'type'  => 'group',
+			'title' => 'My Working Process',
+			'fields'  => array(
+				array(
+					'id'    => 'working_text',
+					'type'  => 'text',
+					'title' => 'working Count Text',
+					'default' => 'Text',
+				),
+				array(
+					'id'    => 'working_img',
+					'type'  => 'media',
+					'title' => 'working Icon',
+				),
+				array(
+					'id'    => 'working_icon',
+					'type'  => 'icon',
+					'title' => 'working Icon',
+				),
+			),
+		),
+	),
+));
+
+
+// Contact Process
+CSF::createSection( $prefix, array(
+	'title'  => 'Contact Us',
+	'fields' => array(
+		array(
+			'id'    => 'info_lists',
+			'type'  => 'group',
+			'title' => 'Contact Information Area',
+			'fields'  => array(
+				array(
+					'id'    => 'info_text',
+					'type'  => 'text',
+					'title' => 'Info Text',
+					'default' => 'Text',
+				),
+				array(
+					'id'    => 'info_icon',
+					'type'  => 'icon',
+					'title' => 'Info Icon',
+				),
+			),
+		),
+		array(
+			'id'    => 'con_social_lists',
+			'type'  => 'group',
+			'title' => 'Contact Social Area',
+			'fields'  => array(
+				array(
+					'id'    => 'social_icon',
+					'type'  => 'icon',
+					'title' => 'Social Icon',
+				),
+				array(
+					'id'    => 'site_link',
+					'type'  => 'text',
+					'title' => 'Visite Site Link Here',
+					'default' => '#',
+				),
+			),
+		),
+	),
+));
 
 
 
+// Google Map
+CSF::createSection( $prefix, array(
+	'title'  => 'Google Map',
+	'fields' => array(
+		array(
+			'id'    => 'google_map',
+			'type'  => 'text',
+			'title' => 'Google Map API Link Here',
+			'default' => 'http://maps.googleapis.com/maps/api/js?key=AIzaSyDkA3g92_4G-b4SpzUPA41QCL_r9naN1mM',
+		),
+	),
+));
 
 
 
@@ -179,33 +282,14 @@ CSF::createSection( $prefix, array(
 			'title'   =>'Footer Social Midea',
 			'fields'  => array(
 				array(
-					'id'    => 'facebook_link',
-					'type'  => 'text',
-					'title' => 'Facebook Link',
-					'default' => '#',
+					'id'    => 'icon_name',
+					'type'  => 'icon',
+					'title' => 'Select Icon',
 				),
 				array(
-					'id'    => 'twitter_link',
+					'id'    => 'site_link',
 					'type'  => 'text',
-					'title' => 'Twitter Link',
-					'default' => '#',
-				),
-				array(
-					'id'    => 'linkedin_link',
-					'type'  => 'text',
-					'title' => 'Linkedin Link',
-					'default' => '#',
-				),
-				array(
-					'id'    => 'instagram_link',
-					'type'  => 'text',
-					'title' => 'Instagram Link',
-					'default' => '#',
-				),
-				array(
-					'id'    => 'pinterest_link',
-					'type'  => 'text',
-					'title' => 'Pinterest Link',
+					'title' => 'Visited Your Site Link Here',
 					'default' => '#',
 				),
 			),

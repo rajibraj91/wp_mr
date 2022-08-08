@@ -1,7 +1,8 @@
 
-<?php
-	$option = get_option('my_framework');
-?>
+	<?php
+		$option = get_option('my_framework');
+	?>
+	
 	<!-- ==========================  Footer Section Start ================== -->
 	<footer class="footer-section">
 		<div class="container">
@@ -9,11 +10,11 @@
 				<p><?php echo $option['copyright']?></p>
 				<div class="social social3">
 					<ul>
-						<li><a href="<?php echo $option['facebook_link']?>"><i class="fa fa-facebook"></i></a></li>
-						<li><a href="<?php echo $option['twitter_link'] ?>"><i class="fa fa-twitter"></i></a></li>
-						<li><a href="<?php echo $option['linkedin_link'] ?>"><i class="fa fa-linkedin"></i></a></li>
-						<li><a href="<?php echo $option['instagram_link'] ?>"><i class="fa fa-instagram"></i></a></li>
-						<li><a href="<?php echo $option['pinterest_link'] ?>"><i class="fa fa-pinterest"></i></a></li>
+						<?php 
+							foreach($option['social_lists'] as $social_list):
+						?>  
+							<li><a href="<?php echo $social_list['site_link']?>"><i class="<?php echo $social_list['icon_name']?>"></i></a></li>
+						<?php endforeach; ?>
 					</ul>
 				</div>
 				<div id="back-to-top" class="scroll-top back-to-top">
@@ -27,7 +28,7 @@
 
 
 	<!-- Google Map -->
-	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDkA3g92_4G-b4SpzUPA41QCL_r9naN1mM"></script>
+	<script type="text/javascript" src="<?php echo $option['google_map']?>"></script>
 
 	<script type="text/javascript">
 
