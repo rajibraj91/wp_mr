@@ -26,7 +26,7 @@
 							<div class="blog-text blog-text1">
                                 <ul>
                                     <li><i class="fa fa-calendar" aria-hidden="true"></i><span><?php the_time('F j, Y');?></span></li>
-                                    <li><i class="fa fa-user" aria-hidden="true"></i><span><a href="#"><?php the_author();?></a></span>
+                                    <li><i class="fa fa-user" aria-hidden="true"></i><span><a href="<?php the_permalink(); ?>"><?php the_author();?></a></span>
                                     </li>
                                     <li><i class="fa fa-comment" aria-hidden="true"></i><span><?php comments_popup_link('0 Comment', '1 Comment', '%');?></span></li>
                                 </ul>
@@ -35,10 +35,10 @@
                                 
 								<div class="social social4">
 									<ul>
-										<li><a href="#"><i class="fa fa-facebook"></i>Facebook</a></li>
-										<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-										<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-										<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+										<li><a href="#"><i class="fab fa-facebook"></i>Facebook</a></li>
+										<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+										<li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+										<li><a href="#"><i class="fab fa-pinterest"></i></a></li>
 									</ul>
 								</div>
 							</div>
