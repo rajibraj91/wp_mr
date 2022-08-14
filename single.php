@@ -48,6 +48,7 @@
 										if ( comments_open() || get_comments_number() ) {
 											comments_template();
 										}
+										mr_comment_form();
 									?>
 								</div>
 							</div>

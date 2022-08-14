@@ -68,22 +68,7 @@
 <?php if (get_comments_number() > 1) 
     {
 ?>
-    <?php
-        $commenter = wp_get_current_commenter();
-        $req = get_option( 'require_name_email' );
-        $aria_req = ( $req ? " aria-required='true'" : '' );
-        $fields =  array(
-            'author' => '<p class="comment-form-author">' . ( $req ? '<span class="required"></span>' : '' ) .
-                '<input id="author" name="author" type="text" placeholder="Name*" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30"' . $aria_req . ' /></p>',
-            'email'  => '<p class="comment-form-email">' . ( $req ? '<span class="required"></span>' : '' ) .
-                '<input id="email" name="email" type="text" placeholder="Email*" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" size="30"' . $aria_req . ' /></p>',
-        );
-        $comments_args = array(
-            'fields' =>  $fields,
-            'label_submit' => 'Send My Comment',
-        );
-        comment_form($comments_args);
-	?>
+   
 </div>
 <?php 
     }

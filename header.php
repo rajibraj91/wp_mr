@@ -10,7 +10,7 @@
     <?php wp_head(); ?>
 </head>
 
-<body data-spy="scroll">
+<body data-spy="scroll" <?php body_class(); ?> >
 	<!-- ==========================  Header Section Start ================== -->
 	<header>
 		<div class="header header-wrapper">

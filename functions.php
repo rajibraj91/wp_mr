@@ -71,10 +71,32 @@ function mr_custom_post (){
         'public' => true,
         'supports' => array('title', 'editor', 'thumbnail', 'custom-fields'),
     ));
+
+
+    // Portfolio section
+    register_post_type( 'portfolios', array(
+        'labels' => array(
+            'name' => __('Portfolios', 'mr'),
+            'singular_name' => __('portfolio', 'mr'),
+        ),
+        'public' => true,
+        'supports' => array('title', 'thumbnail'),
+        'taxonomies'  => array( 'category' ),
+    ));
+
+
+
+    // Skill section
+    register_post_type( 'skills', array(
+        'labels' => array(
+            'name' => __('Skills', 'mr'),
+            'singular_name' => __('skill', 'mr'),
+        ),
+        'public' => true,
+        'supports' => array('title', 'editor', 'custom-fields'),
+    ));
 }
 add_action('init', 'mr_custom_post');
-
-
 
 
 

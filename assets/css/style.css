@@ -1622,6 +1622,7 @@ footer.footer-section {
     overflow:hidden;
     background-color: #ffffff;
     padding: 0px 30px;
+    width: 100%;
 }
 .reviews .blog-reviews ul li {
     border-bottom: 1px solid #f0f0f0;
@@ -1814,20 +1815,26 @@ footer.footer-section {
 
 
 /* Comment form start here */
-.comment-reply-title {
-    margin-bottom: 30px;
+.comment-reply-title, .comment-respond .comment-form input, .comment-respond .comment-form textarea {
+    margin-bottom: 30px !important;
 }
 
+.comment-respond {
+    margin-block: 30px;
+}
+.comment-respond h4 {
+    margin-block: 15px;
+}
 .comment-respond .comment-form {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
-.comment-respond .comment-form p, .comment-respond .comment-form p input {
+.comment-respond .comment-form p, .comment-respond .comment-form p input, .comment-respond .comment-form input {
     width: 100%;
     margin-bottom: 25px;
 }
-.comment-respond .comment-form p input {
+.comment-respond .comment-form p input, .comment-respond .comment-form input {
     padding: 15px 20px;
     border: 1px solid #ededed;
     margin-bottom: 0;
@@ -1841,12 +1848,12 @@ footer.footer-section {
 .comment-respond .comment-form .comment-form-comment label {
     display: none;
 }
-.comment-respond .comment-form .comment-form-comment textarea {
+.comment-respond .comment-form .comment-form-comment textarea, .comment-respond .comment-form textarea {
     padding: 15px 30px;
     width: 100%;
     border: 1px solid #ededed;
 }
-.comment-respond .comment-form .comment-form-author {
+.comment-respond .comment-form .comment-form-author, .comment-respond .comment-form input {
     width: calc(100% / 2 - 15px);
 }
 .comment-respond .comment-form .comment-form-email {
@@ -1870,7 +1877,9 @@ footer.footer-section {
     background-color: #cf1f1f;
     border-radius: 0;
 }
-
+.w-100 {
+    width: 100% !important;
+}
 
 /* tags css */
 

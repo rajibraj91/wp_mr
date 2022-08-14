@@ -108,6 +108,59 @@ get_header();
 <!-- ==========================  About Section End ================== -->
 
 
+<!-- ==========================  Portfolio Section Start ================== -->
+<section id="portfolio" class="portfolio-section section">
+	<div class="portfolio">
+		<div class="section-header">
+			<h2>my portfolio</h2>
+			<p>Professionally harness next-generation internal</p>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="portfolio row">
+					<div id="filters" class="button-group">
+						<ul>
+							<li class="button is-checked" data-filter="*"><?php echo esc_html('All', 'mr');?></li>
+							<?php
+								$terms = get_terms( 'category', array(
+									'hide_empty' => true,
+								) );
+								foreach($terms as $term):
+							?>
+							<li class="button" data-filter=".<?php echo esc_attr($term->slug);?>"><?php echo esc_html($term->name);?></li>
+							<?php endforeach;?>
+						</ul>
+					</div>
+					<div class="portfolio-list grid portfolio-grid da-thumbs" id="da-thumbs">
+						<?php 
+							$portfolio = array(
+								'post_type' => 'portfolios',
+								'posts_per_page' => 9
+							);
+							$query = new WP_Query($portfolio);
+							while($query -> have_posts()) {
+							$query -> the_post();
+							$ports = get_the_terms( get_the_ID(), 'category',true);
+						?>
+							<div class="portfolio-item grid-item portfolio-grid-item <?php foreach($ports as $port) { echo "$port->slug " ; } ?> ">
+								<div class="portfolio-thumb">
+									<img src="<?php the_post_thumbnail_url(); ?>" alt="gallery-images">
+									<div class="portfolio-overlay"></div>
+								</div>
+							</div>
+						<?php
+							}
+							wp_reset_postdata();
+						?>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- ==========================  Portfolio Section End ================== -->
+
+
 
 <!-- ==========================  Counter Section Start ================== -->
 <section class="counter-section ">
@@ -174,6 +227,46 @@ get_header();
 	</div>
 </section>
 <!-- ==========================  Service Section End ================== -->
+
+
+<!-- ==========================  Skill Section Start ================== -->
+<section id="skill" class="skill-section second-section">
+	<div class="section-header">
+		<h2>my skill</h2>
+		<p>Three Years Of Work Experience</p>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="skill row">
+				<?php 
+					$skill = array(
+						'post_type' => 'skills',
+						'posts_per_page' => -1
+					);
+					$query = new WP_Query($skill);
+					while($query -> have_posts()) {
+					$query -> the_post();
+					$width = get_post_meta(get_the_id(), 'width', true);
+					$class_name = get_post_meta(get_the_id(), 'class_name', true);
+				?>
+					<div class="col-sm-6 col-md-6">
+						<div class="skill-list">
+							<h4><?php the_title(); ?></h4>
+							<span><?php echo $width; ?></span>
+							<div id="pbm-bootsrap-progress-1" class="progress <?php echo $class_name; ?>">
+								<div id="pbm-progress-bar-1" role="progress-bar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-primary active progress-bar-striped" style="width: <?php echo $width; ?>; min-width: 2em;"></div>
+							</div>
+						</div>
+					</div>
+				<?php
+					}
+					wp_reset_postdata();
+				?>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- ==========================  Skill Section End ================== -->
 
 
 <!-- ==========================  Testimonial Section Start ================== -->
@@ -264,7 +357,7 @@ get_header();
 				<?php
 						
 					}
-					// wp_reset_postdata();
+					wp_reset_postdata();
 				?>			
 			</div>
 		</div>
