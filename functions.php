@@ -3,6 +3,8 @@
 
 
 require get_template_directory() . '/inc/codestar-code.php';
+require_once get_template_directory() . '/inc/mr-demo-content.php';
+require_once get_template_directory() . '/inc/mr-activation.php';
 
 add_theme_support( 'title-tag' );
 add_theme_support( 'custom-logo');
